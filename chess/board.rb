@@ -1,4 +1,5 @@
 require_relative 'piece'
+require 'byebug'
 
 class Board
 
@@ -49,7 +50,7 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    if board[*start_pos].nil? #TODO :refactor when we have null pieces
+    if self[start_pos].nil? #TODO :refactor when we have null pieces
       raise "There is no piece at #{start_pos}."
     end
 
@@ -57,9 +58,9 @@ class Board
       raise "The piece cannot move to #{end_pos}."
     end
 
-    piece = board[*start_pos]
-    board[*end_pos] = piece
-    board[*start_pos] = nil #TODO :refactor to null pieces
+    self[start_pos].pos = end_pos
+    self[end_pos] = self[start_pos]
+    self[start_pos] = nil #TODO :refactor to null pieces
   end
 
 
