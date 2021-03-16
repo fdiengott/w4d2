@@ -1,4 +1,5 @@
 require_relative 'piece'
+require_relative 'pieces'
 require 'byebug'
 
 class Board
@@ -7,17 +8,7 @@ class Board
 
   def initialize
     @board = Array.new(8) { Array.new(8) }
-    board.each_with_index do |row, i|
-      row.each_with_index do |el, j|
-        if [0,1].include?(i)
-          @board[i][j] = Piece.new(:white, board, [i,j])
-        elsif [6,7].include?(i)
-          @board[i][j] = Piece.new(:black, board, [i,j])
-        else 
-          @board[i][j] = nil
-        end 
-      end
-    end
+    fill_board
     # place_pieces
   end
 
@@ -26,6 +17,7 @@ class Board
     #2 Q K
     #16 pwn
     #16 null_p
+    #TODO: will be abstracted out later
     knight_pos = [[0,1],[0,6],[7,1],[7,6]]
     knights = 4.times do |i|
       if i < 2
@@ -58,6 +50,7 @@ class Board
       raise "The piece cannot move to #{end_pos}."
     end
 
+    #piece get updated
     self[start_pos].pos = end_pos
     self[end_pos] = self[start_pos]
     self[start_pos] = nil #TODO :refactor to null pieces
@@ -73,6 +66,20 @@ class Board
 
   def null_piece
     # get the null piece (singleton)
+  end
+
+  def fill_board
+    board.each_with_index do |row, i|
+      row.each_with_index do |el, j|
+        if [0,1].include?(i)
+          @board[i][j] = Piece.new(:white, board, [i,j])
+        elsif [6,7].include?(i)
+          @board[i][j] = Piece.new(:black, board, [i,j])
+        else 
+          @board[i][j] = nil
+        end 
+      end
+    end
   end
 
 end

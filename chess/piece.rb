@@ -1,6 +1,7 @@
 
 class Piece
   attr_accessor :pos
+  attr_reader :color
   
   def initialize(color, board, pos)
     @color = color
@@ -9,7 +10,10 @@ class Piece
   end
 
   def inspect
-    "#<Piece pos: #{pos}, color: #{color}>"
+   "#<Piece pos: #{pos}, color: #{color}>"
   end
-  
+
+  def moves
+    #TODO : will use move_dirs from module
+  end
 end
