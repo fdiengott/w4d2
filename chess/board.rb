@@ -5,25 +5,37 @@ class Board
   attr_reader :board
 
   def initialize
-    @board = setup_board # fill with ?
+    @board = Array.new(8) { Array.new(8) }
+    board.each_with_index do |row, i|
+      row.each_with_index do |el, j|
+        if [0,1].include?(i)
+          @board[i][j] = Piece.new(:white, board, [i,j])
+        elsif [6,7].include?(i)
+          @board[i][j] = Piece.new(:black, board, [i,j])
+        else 
+          @board[i][j] = nil
+        end 
+      end
+    end
+    # place_pieces
   end
 
-  def setup_board
+  def place_pieces
     #4 kn, R, B
     #2 Q K
     #16 pwn
     #16 null_p
     knight_pos = [[0,1],[0,6],[7,1],[7,6]]
-    black_knights = [Knight.new(:black,),Knight.new(:black,)]
-    knights = 4.times.map do |i|
+    knights = 4.times do |i|
       if i < 2
-        Knight.new(:black) #TODO : more args later 
+        pos = knight_pos.shift
+        board[pos] = Knight.new(:black, board, pos) 
       else
-        Knight.new(:white) #TODO : more args later 
+        pos = knight_pos.shift
+        board[pos] = Knight.new(:white, board, pos) 
       end
     end
 
-    Array.new(8) { Array.new(8) }
 
   end
 
