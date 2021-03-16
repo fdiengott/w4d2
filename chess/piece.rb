@@ -15,5 +15,7 @@ class Piece
 
   def moves
     #TODO : will use move_dirs from module
+    #returns an arry of possible moves
+    raise "Need to override parent class!!"
   end
 end
