@@ -18,4 +18,24 @@ class Piece
     #returns an arry of possible moves
     raise "Need to override parent class!!"
   end
+
+  def to_s
+    self.symbol
+  end
+  def empty?
+    self.is_a?(NullPiece)
+  end
+  def valid_moves
+
+  end
+  def symbol
+    
+  end
+  
+  private 
+  def move_into_check?(end_pos)
+
+  end
+
+
 end
