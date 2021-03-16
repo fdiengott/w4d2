@@ -9,10 +9,6 @@ class Piece
     @pos = pos
   end
 
-  def inspect
-   "#<Piece pos: #{pos}, color: #{color}>"
-  end
-
   def moves
     #TODO : will use move_dirs from module
     #returns an arry of possible moves
@@ -22,14 +18,21 @@ class Piece
   def to_s
     self.symbol
   end
+
   def empty?
     self.is_a?(NullPiece)
   end
-  def valid_moves
 
-  end
-  def symbol
+  # def valid_moves
+  #   #need 
+  # end
+
+  # def symbol
     
+  # end
+
+  def inspect
+     "#<Piece pos: #{pos}, color: #{color}>"
   end
   
   private 
