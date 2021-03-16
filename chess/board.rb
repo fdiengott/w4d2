@@ -35,8 +35,7 @@ class Board
         board[pos] = Knight.new(:white, board, pos) 
       end
     end
-
-
+    # TODO needs more object pieces
   end
 
   def [](pos)
@@ -48,6 +47,15 @@ class Board
     row, col = pos
     @board[row][col] = val
   end
+
+  def move_piece(start_pos, end_pos)
+    raise "There is no piece at #{start_pos}."
+
+    raise "The piece cannot move to #{end_pos}."
+  end
+
+
+
 
   private 
 
