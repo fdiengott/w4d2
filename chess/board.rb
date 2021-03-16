@@ -49,13 +49,24 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    raise "There is no piece at #{start_pos}."
+    if board[*start_pos].nil? #TODO :refactor when we have null pieces
+      raise "There is no piece at #{start_pos}."
+    end
 
-    raise "The piece cannot move to #{end_pos}."
+    if !valid_pos?(end_pos) 
+      raise "The piece cannot move to #{end_pos}."
+    end
+
+    piece = board[*start_pos]
+    board[*end_pos] = piece
+    board[*start_pos] = nil #TODO :refactor to null pieces
   end
 
 
-
+  def valid_pos?(pos)
+    row,col = pos
+    row.between?(0,7) && col.between?(0,7)
+  end
 
   private 
 
